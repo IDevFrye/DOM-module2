@@ -16,9 +16,7 @@ const thirdSectionImage = document.querySelector('[src="image/three.jpg"]');
 
 const fourthSection = document.getElementsByClassName('item_four')[0];
 const fourthSectionElem = document.querySelector('.item_two .props__item_four');
-console.log('fourthSectionElem: ', fourthSectionElem);
 const fourthSectionPlace = document.querySelector('.props__item.props__item_four:nth-child(3)');
-console.log('fourthSectionPlace : ', fourthSectionPlace);
 
 const fifthSection = document.querySelector('.item_five');
 const fifthSectionElems = document.querySelectorAll('.props__item_five');
