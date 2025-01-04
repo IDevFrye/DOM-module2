@@ -1,68 +1,30 @@
 'use strict';
 
-const ads = document.getElementsByClassName('ads')[0];
+// удаление рекламного баннера
+document.querySelector('.ads').remove(); 
 
-const firstSection = document.getElementsByClassName('item_one')[0];
+// перемещение четвертой карточки после третьей (для стилей)
+const thirdItem = document.querySelector('.item_three');
+thirdItem.after(document.querySelector('.item_four'));
 
-const secondSection = document.querySelector('.item_two');
-const secondSectionElems = document.querySelectorAll('.props__item_two');
-const secondSectionTitle = document.querySelector('.item_five .item__title');
-const secondSectionImage = document.querySelector('[src="image/two.jpg"]');
+// орпределяем массивы элементов для перестановок
+const content = document.querySelectorAll('.content');
+const titles = document.querySelectorAll('.item__title, [name="title-items"]');
+const images = document.querySelectorAll('.item__image');
+const propsLists = document.querySelectorAll('.props__list');
 
-const thirdSection = document.querySelector('.item_three');
-const thirdSectionElems = document.querySelectorAll('.props__item_three');
-const thirdSectionTitleTrue = document.createTextNode('This и прототипы объектов');
-const thirdSectionImage = document.querySelector('[src="image/three.jpg"]');
+// переименование заголовка (в соответствии со образцом)
+titles[2].textContent = 'This и прототипы объектов';
 
-const fourthSection = document.getElementsByClassName('item_four')[0];
-const fourthSectionElem = document.querySelector('.item_two .props__item_four');
-const fourthSectionPlace = document.querySelector('.props__item.props__item_four:nth-child(3)');
+// перемещаем контент для 2-ой и 3-ей карточки
+const propsItems1 = document.querySelectorAll('.props__item_two');
+content[1].append(images[1], titles[4], ...propsItems1);
+content[2].append(images[2], titles[2], propsLists[4]);
 
-const fifthSection = document.querySelector('.item_five');
-const fifthSectionElems = document.querySelectorAll('.props__item_five');
-const fifthSectionTitle = document.querySelector('.item_six .item__title');
-const fifthSectionImage = document.querySelector('[src="image/five.jpg"]');
+// перемещаем строчку 4-ой карточки (из 2-ой) в нужное место
+const neighbourItem = document.querySelector('.props__item_four:nth-child(3)');
+neighbourItem.after(document.querySelector('.props__item_four:first-child'));
 
-const sixthSection = document.querySelector('.item_six');
-const sixthSectionElems = document.querySelectorAll('.props__item_six');
-const sixthSectionTitle = document.querySelector('.item_two .item__title');
-const sixthSectionImage = document.querySelector('[src="image/six.jpg"]');
-
-const list = document.getElementsByClassName('items')[0];
-
-ads.remove(); // удаление рекламного баннера
-
-// 2-ая секция
-secondSection.querySelector('.props__list').innerHTML = '';
-secondSectionElems.forEach((elem) => secondSection.querySelector('.props__list').appendChild(elem));
-secondSection.querySelector('.item__title').textContent = secondSectionTitle.textContent;
-secondSection.querySelector('.item__image').src = secondSectionImage.src;
-
-// 3-ья секция
-thirdSection.querySelector('.props__list').innerHTML = '';
-thirdSectionElems.forEach((elem) => thirdSection.querySelector('.props__list').appendChild(elem));
-thirdSection.querySelector('.item__title').textContent = thirdSectionTitleTrue.textContent;
-thirdSection.querySelector('.item__image').src = thirdSectionImage.src;
-
-// 4-ая секция
-fourthSectionPlace.after(fourthSectionElem);
-
-// 5-ая секция
-fifthSection.querySelector('.props__list').innerHTML = '';
-fifthSectionElems.forEach((elem) => fifthSection.querySelector('.props__list').appendChild(elem));
-fifthSection.querySelector('.item__title').textContent = fifthSectionTitle.textContent;
-fifthSection.querySelector('.item__image').src = fifthSectionImage.src;
-
-// 6-ая секция
-sixthSection.querySelector('.props__list').innerHTML = '';
-sixthSectionElems.forEach((elem) => sixthSection.querySelector('.props__list').appendChild(elem));
-sixthSection.querySelector('.item__title').textContent = sixthSectionTitle.textContent;
-sixthSection.querySelector('.item__image').src = sixthSectionImage.src;
-
-// Сортировка элементов спсика
-list.appendChild(firstSection);
-list.appendChild(secondSection);
-list.appendChild(thirdSection);
-list.appendChild(fourthSection);
-list.appendChild(fifthSection);
-list.appendChild(sixthSection);
+// перемещаем контент для 5-ой и 6-ой карточки
+content[4].append(images[4], titles[5], propsLists[2]);
+content[5].append(images[5], titles[1], propsLists[5]);
